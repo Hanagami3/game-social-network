@@ -13,8 +13,8 @@ function mustContainQuestionMark(control: AbstractControl){
   selector: 'app-posting',
   standalone: true,
   imports: [RouterOutlet, ReactiveFormsModule],
-  templateUrl: './posting.component.html',
-  styleUrl: './posting.component.scss'
+  templateUrl: './post.component.html',
+  styleUrl: './post.component.scss'
 })
 export class PostingComponent {
 

@@ -1,5 +1,6 @@
 package be.intecbrussel.gamesocialnetworkapp.models.user;
 
+import be.intecbrussel.gamesocialnetworkapp.models.Post;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -49,8 +50,12 @@ public class User implements UserDetails, Principal {
     private String password;
     private boolean accountLocked;
     private boolean enabled;
+
     @ManyToMany(fetch = EAGER)
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "author")
+    private List<Post> posts;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
