@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/gamesocial_db
+    username: hanagami
+    password: maxime
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+  mail:
+    host: localhost
+    port: 1025
+    username: max
+    password: max
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enable: true
+        connectiontimout: 5000
+        timeout: 3000
+        writetimeout: 5000
+
+  application:
+    security:
+      jwt:
+        secret-key: fc9d458131784d2b4b466575ea1f476a52ba9122d203ac57a7af4cbdbf0100922e2ae5bf1a8062716b280d1498ec58f9aa1d3d4b3889e6239df25a4aa8e05a57
+        expiration: 86400000
+    mailing:
+      frontend:
+        activation-url: http://localhost:4200/activate-account
+server:
+  port: 8088
+
+
