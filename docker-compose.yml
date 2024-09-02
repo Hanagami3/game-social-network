@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   mysql:
-    container_name: mysql-sql-bsn
+    container_name: mysql-sql-intec
     image: mysql:8.0
     environment:
       MYSQL_USER: hanagami
@@ -17,7 +17,7 @@ services:
     restart: unless-stopped
 
   mail-dev:
-    container_name: mail-dev-bsn
+    container_name: mail-dev-intec
     image: maildev/maildev
     ports:
       - "1080:1080"
