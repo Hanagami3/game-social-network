@@ -1,0 +1,38 @@
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-img {
+  width: 100%; /* Utiliser la largeur maximale du conteneur de la carte */
+  height: auto; /* Hauteur automatique pour conserver les proportions */
+  max-height: 200px; /* Limiter la hauteur des GIFs pour un affichage uniforme */
+  object-fit: cover; /* Maintient les proportions tout en couvrant le conteneur */
+}
+
+.container {
+  max-width: 1200px; /* Ajustez la largeur maximale du conteneur */
+}
+
+h2 {
+  font-family: 'Airbnb Cereal App Medium', sans-serif;
+}
+
+.text-muted {
+  font-size: 1.1rem;
+}
+
+.row {
+  justify-content: center; /* Centre les cartes horizontalement */
+}
+
+.col-md-4 {
+  display: flex; /* Utiliser flexbox pour centrer le contenu */
+  justify-content: center; /* Centre les cartes à l'intérieur de la colonne */
+}

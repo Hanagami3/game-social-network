@@ -1,0 +1,32 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h2>Posting</h2>
+
+  <div class="control-row">
+    <div class="control no-margin">
+      <label for="title">Title</label>
+      <input id="title" type="title" formControlName="title"/>
+    </div>
+
+    <div class="control no-margin">
+      <label for="content">Content</label>
+      <input id="content" type="content" formControlName="content"/>
+    </div>
+
+    <div class="control no-margin">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email"/>
+    </div>
+
+    <button class="button">Submit</button>
+  </div>
+
+  @if (emailIsInvalid) {
+    <p class="control-error">Please enter a valid email address.</p>
+  }
+  @if (titleIsInvalid) {
+    <p class="control-error">Please enter a valid title (less then 250 characters).</p>
+  }
+  @if (contentIsInvalid) {
+    <p class="control-error">Please enter a valid content (with '?').</p>
+  }
+</form>
