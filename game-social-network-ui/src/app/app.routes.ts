@@ -7,6 +7,7 @@ import {FormComponent} from "./layout/form/form.component";
 import {PostComponent} from "./post/component/post/post.component";
 import {MainComponent} from "./post/pages/main/main.component";
 import {PostListComponent} from "./post/pages/post-list/post-list.component";
+import {ManageBookComponent} from "./post/pages/my-post/manage-book/manage-book.component";
 
 export const routes: Routes = [
   {
@@ -26,6 +27,10 @@ export const routes: Routes = [
     component: ActivateAccountComponent
   },
   {
+    path: 'manage',
+    component: ManageBookComponent
+  },
+  {
     path: 'form',
     component: FormComponent
   },
@@ -36,6 +41,14 @@ export const routes: Routes = [
       {
         path: 'post',
         component: PostListComponent
+      },
+      {
+        path: 'manage1',
+        component: ManageBookComponent
+      },
+      {
+        path: 'manage/:postId',
+        component: ManageBookComponent
       }
     ]
   }
