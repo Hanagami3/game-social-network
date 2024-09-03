@@ -1,6 +1,6 @@
 package be.intecbrussel.gamesocialnetworkapp.services.security;
 
-import be.intecbrussel.gamesocialnetworkapp.models.enums.EmailTemplateName;
+import be.intecbrussel.gamesocialnetworkapp.EmailTemplateName;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;

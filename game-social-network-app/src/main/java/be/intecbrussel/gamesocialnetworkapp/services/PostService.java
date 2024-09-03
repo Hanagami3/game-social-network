@@ -6,7 +6,6 @@ import be.intecbrussel.gamesocialnetworkapp.models.Post;
 import be.intecbrussel.gamesocialnetworkapp.models.user.User;
 import be.intecbrussel.gamesocialnetworkapp.requests.PostRequest;
 import be.intecbrussel.gamesocialnetworkapp.repositories.PostRepository;
-import be.intecbrussel.gamesocialnetworkapp.responses.CommentResponse;
 import be.intecbrussel.gamesocialnetworkapp.responses.PostResponse;
 import be.intecbrussel.gamesocialnetworkapp.responses.PageResponse;
 import be.intecbrussel.gamesocialnetworkapp.specifications.PostSpecification;
@@ -41,16 +40,16 @@ public class PostService {
 
     public PostResponse findById(Long postId) {
         return postRepository.findById(postId)
-                .map(postMapper::toBookResponse)
+                .map(postMapper::toPostResponse)
                 .orElseThrow(() -> new EntityNotFoundException("No post found with the ID: " + postId));
     }
 
     public PageResponse<PostResponse> findAllPosts(int page, int size, Authentication connectedUser) {
         User user = ((User) connectedUser.getPrincipal());
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdDate").descending());
-        Page<Post> posts = postRepository.findAllDisplayableBooks(pageable, user.getId());
+        Page<Post> posts = postRepository.findAllDisplayablePosts(pageable, user.getId());
         List<PostResponse> postResponse = posts.stream()
-                .map(postMapper::toBookResponse)
+                .map(postMapper::toPostResponse)
                 .toList();
         return new PageResponse<>(
                 postResponse,
@@ -68,7 +67,7 @@ public class PostService {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdDate").descending());
         Page<Post> posts = postRepository.findAll(PostSpecification.withAuthorId(user.getId()), pageable);
         List<PostResponse> postResponse = posts.stream()
-                .map(postMapper::toBookResponse)
+                .map(postMapper::toPostResponse)
                 .toList();
         return new PageResponse<>(
                 postResponse,
@@ -105,7 +104,7 @@ public class PostService {
         return postId;
     }
 
-    public void uploadBookCoverPicture(MultipartFile file, Authentication connectedUser, Long postId) {
+    public void uploadPostImage(MultipartFile file, Authentication connectedUser, Long postId) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new EntityNotFoundException("No post found with the ID: " + postId));
         User user = ((User) connectedUser.getPrincipal());

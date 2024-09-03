@@ -1,9 +1,9 @@
 package be.intecbrussel.gamesocialnetworkapp.controllers;
 
 
-import be.intecbrussel.gamesocialnetworkapp.models.auth.AuthenticationRequest;
-import be.intecbrussel.gamesocialnetworkapp.models.auth.AuthenticationResponse;
-import be.intecbrussel.gamesocialnetworkapp.models.auth.RegistrationRequest;
+import be.intecbrussel.gamesocialnetworkapp.requests.AuthenticationRequest;
+import be.intecbrussel.gamesocialnetworkapp.responses.AuthenticationResponse;
+import be.intecbrussel.gamesocialnetworkapp.requests.RegistrationRequest;
 import be.intecbrussel.gamesocialnetworkapp.services.security.AuthenticationService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;

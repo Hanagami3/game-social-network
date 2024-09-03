@@ -30,14 +30,14 @@ public class PostController {
     }
 
     @GetMapping("{post-id}")
-    public ResponseEntity<PostResponse> findBookById(
+    public ResponseEntity<PostResponse> findPostById(
             @PathVariable("post-id") Long postId
     ){
         return ResponseEntity.ok(postService.findById(postId));
     }
 
     @GetMapping
-    public ResponseEntity<PageResponse<PostResponse>> findAllBooks(
+    public ResponseEntity<PageResponse<PostResponse>> findAllPosts(
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
             @RequestParam(name = "size", defaultValue = "10", required = false) int size,
             Authentication connectedUser
@@ -78,7 +78,7 @@ public class PostController {
             @RequestPart("file") MultipartFile file,
             Authentication connectedUser
     ){
-        postService.uploadBookCoverPicture(file, connectedUser, postId);
+        postService.uploadPostImage(file, connectedUser, postId);
         return ResponseEntity.accepted().build();
     }
 

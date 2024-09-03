@@ -1,4 +1,17 @@
-import {IconDefinition, faBars, faBicycle, faCalendar, faCircle, faDice, faEye, faGamepad, faMessage, faSearch, faUser} from "@fortawesome/free-solid-svg-icons"
+import {
+  IconDefinition,
+  faBars,
+  faBicycle,
+  faCalendar,
+  faCircle,
+  faDice,
+  faEye,
+  faGamepad,
+  faMessage,
+  faSearch,
+  faUser,
+  faHome
+} from "@fortawesome/free-solid-svg-icons"
 
 export const fontAwesomeIcons: IconDefinition[] = [
   faBicycle,
@@ -11,4 +24,5 @@ export const fontAwesomeIcons: IconDefinition[] = [
   faCalendar,
   faCircle,
   faGamepad,
+  faHome
 ]

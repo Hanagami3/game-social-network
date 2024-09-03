@@ -16,5 +16,5 @@ public interface PostRepository extends JpaRepository<Post, Long>, JpaSpecificat
             AND post.shareable = true
             AND post.author.id != :userId
             """)
-    Page<Post> findAllDisplayableBooks(Pageable pageable, Long userId);
+    Page<Post> findAllDisplayablePosts(Pageable pageable, Long userId);
 }

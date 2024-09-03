@@ -3,7 +3,10 @@ import {LoginComponent} from "./pages/login/login.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {ActivateAccountComponent} from "./pages/activate-account/activate-account.component";
 import {DisplayIndexComponent} from "./display-index/display-index/display-index.component";
-import {PostingComponent} from "./post/post.component";
+import {FormComponent} from "./layout/form/form.component";
+import {PostComponent} from "./post/component/post/post.component";
+import {MainComponent} from "./post/pages/main/main.component";
+import {PostListComponent} from "./post/pages/post-list/post-list.component";
 
 export const routes: Routes = [
   {
@@ -23,7 +26,17 @@ export const routes: Routes = [
     component: ActivateAccountComponent
   },
   {
-    path: 'posting',
-    component: PostingComponent,
+    path: 'form',
+    component: FormComponent
+  },
+  {
+    path: 'post',
+    component: MainComponent,
+    children: [
+      {
+        path: 'post',
+        component: PostListComponent
+      }
+    ]
   }
 ];

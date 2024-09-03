@@ -20,6 +20,8 @@ import { Register$Params } from '../fn/authentication/register';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService extends BaseService {
   notConnected = "NOT_CONNECTED";
+
+
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
   }

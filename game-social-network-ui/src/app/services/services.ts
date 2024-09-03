@@ -1,3 +1,3 @@
-export { FeedbackService } from './services/feedback.service';
-export { BookService } from './services/book.service';
+export { PostService } from './services/post.service';
+export { CommentService } from './services/comment.service';
 export { AuthenticationService } from './services/authentication.service';

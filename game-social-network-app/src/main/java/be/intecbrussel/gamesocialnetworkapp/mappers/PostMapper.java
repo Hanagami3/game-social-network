@@ -22,7 +22,7 @@ public class PostMapper {
     }
 
 
-    public PostResponse toBookResponse(Post post) {
+    public PostResponse toPostResponse(Post post) {
         return PostResponse.builder()
                 .id(post.getId())
                 .title(post.getTitle())

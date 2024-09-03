@@ -1,9 +1,9 @@
 package be.intecbrussel.gamesocialnetworkapp.services.security;
 
-import be.intecbrussel.gamesocialnetworkapp.models.auth.AuthenticationRequest;
-import be.intecbrussel.gamesocialnetworkapp.models.auth.AuthenticationResponse;
-import be.intecbrussel.gamesocialnetworkapp.models.auth.RegistrationRequest;
-import be.intecbrussel.gamesocialnetworkapp.models.enums.EmailTemplateName;
+import be.intecbrussel.gamesocialnetworkapp.requests.AuthenticationRequest;
+import be.intecbrussel.gamesocialnetworkapp.responses.AuthenticationResponse;
+import be.intecbrussel.gamesocialnetworkapp.requests.RegistrationRequest;
+import be.intecbrussel.gamesocialnetworkapp.EmailTemplateName;
 import be.intecbrussel.gamesocialnetworkapp.models.user.Token;
 import be.intecbrussel.gamesocialnetworkapp.models.user.User;
 import be.intecbrussel.gamesocialnetworkapp.repositories.user.RoleRepository;
@@ -12,13 +12,11 @@ import be.intecbrussel.gamesocialnetworkapp.repositories.user.UserRepository;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cglib.core.Local;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
