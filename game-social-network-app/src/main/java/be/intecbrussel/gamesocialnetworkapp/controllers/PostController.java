@@ -45,6 +45,7 @@ public class PostController {
         return ResponseEntity.ok(postService.findAllPosts(page, size, connectedUser));
     }
 
+
     @GetMapping("/author")
     public ResponseEntity<PageResponse<PostResponse>> findAllPostByAuthor(
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
@@ -71,7 +72,7 @@ public class PostController {
         return ResponseEntity.ok(postService.updateArchivedStatus(postId, connectedUser));
     }
 
-    @PostMapping(value = "image/{post-id}", consumes = "miltipart/form-data")
+    @PostMapping(value = "image/{post-id}", consumes = "multipart/form-data")
     public ResponseEntity<?> uploadImage(
             @PathVariable("post-id") Long postId,
             @Parameter()

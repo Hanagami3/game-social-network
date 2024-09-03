@@ -19,7 +19,7 @@ import { TokenService} from "../../services/token/token.service";
 })
 export class LoginComponent {
 
-  authRequest: AuthenticationRequest = {email: '', password: ''}
+  authRequest: AuthenticationRequest = {email: '', password: ''};
   errorMsg: Array<string> = [];
 
   constructor(
@@ -36,20 +36,20 @@ export class LoginComponent {
     }).subscribe({
       next: (res) => {
         this.tokenService.token = res.token as string;
-        this.router.navigate(['posts']);
+        this.router.navigate(['post']);
       },
       error: (err) => {
         console.log(err);
         if (err.error.validationErrors) {
           this.errorMsg = err.error.validationErrors;
         } else {
-          this.errorMsg.push(err.error.error);
+          this.errorMsg.push(err.error.errorMsg);
         }
       }
     });
   }
 
   register() {
-    this.router.navigate(['register'])
+    this.router.navigate(['register']);
   }
 }

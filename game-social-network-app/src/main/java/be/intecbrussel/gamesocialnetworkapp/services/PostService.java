@@ -62,6 +62,7 @@ public class PostService {
         );
     }
 
+
     public PageResponse<PostResponse> findAllPostsByAuthor(int page, int size, Authentication connectedUser) {
         User user = ((User) connectedUser.getPrincipal());
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdDate").descending());

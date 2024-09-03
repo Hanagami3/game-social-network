@@ -35,8 +35,9 @@ export class PostListComponent implements OnInit{
       size: this.size
     }).subscribe({
       next: (posts) => {
+        console.log(posts);
         this.postResponse = posts;
       }
-    })
+    });
   }
 }

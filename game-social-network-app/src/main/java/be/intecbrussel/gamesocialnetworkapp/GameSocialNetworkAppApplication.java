@@ -1,7 +1,10 @@
 package be.intecbrussel.gamesocialnetworkapp;
 
+import be.intecbrussel.gamesocialnetworkapp.models.Post;
 import be.intecbrussel.gamesocialnetworkapp.models.user.Role;
+import be.intecbrussel.gamesocialnetworkapp.repositories.PostRepository;
 import be.intecbrussel.gamesocialnetworkapp.repositories.user.RoleRepository;
+import be.intecbrussel.gamesocialnetworkapp.repositories.user.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,11 +22,21 @@ public class GameSocialNetworkAppApplication {
     }
 
     @Bean
-    public CommandLineRunner runner(RoleRepository roleRepository) {
+    public CommandLineRunner runner(RoleRepository roleRepository, PostRepository postRepository, UserRepository userRepository) {
         return args -> {
             if (roleRepository.findByName("USER").isEmpty()){
                 roleRepository.save(
                         Role.builder().name("USER").build()
+                );
+            }
+            if (postRepository.findById(1L).isEmpty()){
+                postRepository.save(
+                        Post.builder()
+                                .title("Post 1")
+                                .createdBy(1L)
+                                .content("content1")
+                                .author(userRepository.findAll().get(0))
+                                .build()
                 );
             }
         };

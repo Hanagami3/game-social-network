@@ -21,15 +21,27 @@
       <form class="row g-3">
         <div class="col-6">
           <label for="title" class="form-label">Title</label>
-          <input [(ngModel)]="postRequest" type="text" class="form-control" id="title" placeholder="Post title">
+          <input [(ngModel)]="postRequest.title" name="title" type="text" class="form-control" id="title" placeholder="Post title">
         </div>
         <div class="col-6">
-          <label for="title" class="form-label">Resume</label>
-          <input [(ngModel)]="postRequest" type="text" class="form-control" id="Resume" placeholder="Post title">
+          <label for="resume" class="form-label">Resume</label>
+          <input [(ngModel)]="postRequest.resume" name="resume" type="text" class="form-control" id="resume" placeholder="Post resume">
         </div>
         <div class="col-12">
-          <label for="title" class="form-label">Content</label>
-          <input [(ngModel)]="postRequest" type="text" class="form-control" id="Content" placeholder="Post title">
+          <label for="content" class="form-label">Content</label>
+          <textarea [(ngModel)]="postRequest.content" name="content" class="form-control" id="content" rows="4" placeholder="Post content"></textarea>
+        </div>
+        <div class="col-12">
+          <input [(ngModel)]="postRequest.shareable" name="shareable" class="form-check-input" id="shareme" type="checkbox">
+          <label for="shareme" class="form-check-label">Share me</label>
+        </div>
+        <div class="d-flex justify-content-end gap-2 col-12">
+          <button (click)="savePost()" type="submit" class="btn btn-outline-primary">
+            <i class="fas fa-save"></i>&nbsp;Save
+          </button>
+          <a routerLink="/post/my-posts" class="btn btn-link text-danger">
+            <i class="fas fa-times"></i>&nbsp;Cancel
+          </a>
         </div>
       </form>
     </div>
