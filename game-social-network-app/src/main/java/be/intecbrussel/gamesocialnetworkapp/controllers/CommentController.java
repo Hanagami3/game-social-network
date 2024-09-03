@@ -39,5 +39,4 @@ public class CommentController {
     ){
         return ResponseEntity.ok(commentService.finAllCommentByPost(postId, page, size, connectedUser));
     }
-
 }
