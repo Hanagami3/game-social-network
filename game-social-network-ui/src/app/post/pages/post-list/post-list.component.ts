@@ -3,12 +3,14 @@ import {PostService} from "../../../services/services/post.service";
 import {Router} from "@angular/router";
 import {PageResponsePostResponse} from "../../../services/models/page-response-post-response";
 import {NgForOf} from "@angular/common";
+import {PostCardComponent} from "../../component/post-card/post-card.component";
 
 @Component({
   selector: 'app-post-list',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    PostCardComponent
   ],
   templateUrl: './post-list.component.html',
   styleUrl: './post-list.component.scss'

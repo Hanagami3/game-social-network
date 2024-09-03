@@ -1,5 +1,5 @@
 <h3>Post list</h3>
 <hr>
 <div class="d-flex justify-content-start gap-2 flew-wrap">
-  <span *ngFor="let post of postResponse.content">{{post.title}}</span>
+  <app-post-card [post]="post" *ngFor="let post of postResponse.content"></app-post-card>
 </div>
