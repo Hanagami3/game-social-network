@@ -7,7 +7,8 @@ services:
     environment:
       MYSQL_USER: hanagami
       MYSQL_PASSWORD: maxime
-      MYSQL_DATABASE: book_social_network
+      MYSQL_DATABASE: gamesocial_db
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
       - mysql-data:/var/lib/mysql
     ports:
@@ -22,9 +23,15 @@ services:
     ports:
       - "1080:1080"
       - "1025:1025"
+  gsn-api:
+    container_name: gsn-api
+    image: gsn/gsn:1.0.0
+    ports:
+      - "8088:8088"
     networks:
       - spring-demo
-
+    depends_on:
+      - mysql
 networks:
   spring-demo:
     driver: bridge
