@@ -77,11 +77,23 @@ export class MyPostsComponent implements OnInit{
   }
 
   archivePost(post: PostResponse) {
-
+    this.postService.updateArchivedStatus({
+      'post-id': post.id as number
+    }).subscribe({
+      next: () => {
+        post.archived = !post.archived
+      }
+    });
   }
 
   sharePost(post: PostResponse) {
-
+    this.postService.updateShareableStatus({
+      'post-id': post.id as number,
+    }).subscribe({
+      next: () => {
+        post.shareable = !post.shareable;
+      }
+      });
   }
 
   editPost(post: PostResponse) {

@@ -58,17 +58,14 @@ export class PostCardComponent {
 
   onCommentView() {
     this.comments.emit(this._post)
-
   }
 
   onEdit() {
     this.edit.emit(this._post)
-
   }
 
   onShare() {
     this.share.emit(this._post)
-
   }
 
   onArchive() {

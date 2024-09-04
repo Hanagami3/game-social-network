@@ -10,7 +10,8 @@
     </parent>
     <groupId>be.intecbrussel</groupId>
     <artifactId>game-social-network-app</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+<!--    <version>0.0.1-SNAPSHOT</version>-->
+    <version>1.0.0</version>
     <name>game-social-network-app</name>
     <description>game-social-network-app</description>
     <url/>

@@ -1,11 +1,11 @@
 <div
-  class="card"
+  class="card border-2"
   style="width: 20rem;"
+  [class.border-success]="post.shareable"
+  [class.border-warning]="post.archived"
 >
   <img height="200" [src]="postImage" class="card-img-top" alt="...">
-  <div class="card-body overflow
-<!--  -scroll-->
-">
+  <div class="card-body overflow-scroll">
     <h5 class="card-title fs-6 text-nowrap fw-bold mb-1">
       <i class="fa-solid fa-pen"></i>&nbsp;{{post.title}}
     </h5>
