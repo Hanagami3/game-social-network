@@ -17,8 +17,8 @@ import {PostCardComponent} from "../../component/post-card/post-card.component";
 })
 export class PostListComponent implements OnInit{
   postResponse: PageResponsePostResponse = {};
-  private page = 0;
-  private size = 5;
+  page = 0;
+  size = 2;
 
   constructor(
     private postService: PostService,
@@ -41,5 +41,34 @@ export class PostListComponent implements OnInit{
         this.postResponse = posts;
       }
     });
+  }
+
+  goToFirstPage() {
+    this.page = 0;
+    this.findAllPosts();
+  }
+
+  goToPreviousPage() {
+    this.page--;
+    this.findAllPosts();
+  }
+
+  goToPage(page: number) {
+    this.page = page;
+    this.findAllPosts();
+  }
+
+  goToNextPage() {
+    this.page++;
+    this.findAllPosts();
+  }
+
+  goToLastPage() {
+    this.page = this.postResponse.totalPages as number -1;
+    this.findAllPosts();
+  }
+
+  get isLastPage(): boolean {
+    return this.page == this.postResponse.totalPages as number -1;
   }
 }
