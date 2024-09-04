@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
-import {PostRequest} from "../../../../services/models/post-request";
+import {PostRequest} from "../../../services/models/post-request";
 import {FormsModule} from "@angular/forms";
-import {Router, RouterLink} from "@angular/router";
-import {PostService} from "../../../../services/services/post.service";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
+import {PostService} from "../../../services/services/post.service";
 
 @Component({
   selector: 'app-manage-book',
@@ -14,10 +14,10 @@ import {PostService} from "../../../../services/services/post.service";
     FormsModule,
     RouterLink,
   ],
-  templateUrl: './manage-book.component.html',
-  styleUrl: './manage-book.component.scss'
+  templateUrl: './manage-post.component.html',
+  styleUrl: './manage-post.component.scss'
 })
-export class ManageBookComponent {
+export class ManagePostComponent implements OnInit{
 
   errorMsg: Array<String> = [];
   selectedPostImage: any;
@@ -26,8 +26,29 @@ export class ManageBookComponent {
 
   constructor(
     private postService: PostService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
   ){}
+
+  ngOnInit(): void {
+      const postId = this.activatedRoute.snapshot.params['postId'];
+      if (postId) {
+        this.postService.findPostById({
+          'post-id': postId
+        }).subscribe(post => {
+          this.postRequest = {
+            id: post.id,
+            title: post.title as string,
+            resume: post.resume,
+            content: post.content as string,
+            shareable: post.shareable
+          }
+          if (post.image){
+            this.selectedImage = 'data:image/png;base64,' + post.image;
+          }
+        })
+      }
+    }
 
   onFileSelected(event: any) {
     this.selectedPostImage = event.target.files[0];
