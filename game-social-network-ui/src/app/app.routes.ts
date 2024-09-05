@@ -10,6 +10,8 @@ import {PostListComponent} from "./post/pages/post-list/post-list.component";
 import {ManagePostComponent} from "./post/pages/manage-book/manage-post.component";
 import {MyPostsComponent} from "./post/pages/my-posts/my-posts.component";
 import {authGuard} from "./services/guard/auth.guard";
+import {SinglePostComponent} from "./post/pages/single-post/single-post.component";
+import {CommentsPostComponent} from "./post/pages/comments-post/comments-post.component";
 
 export const routes: Routes = [
   {
@@ -51,6 +53,16 @@ export const routes: Routes = [
       {
         path: 'manage/:postId',
         component: ManagePostComponent,
+        canActivate: [authGuard]
+      },
+      {
+        path: 'single-post/:postId',
+        component: SinglePostComponent,
+        canActivate: [authGuard]
+      },
+      {
+        path: 'comments-post/:postId',
+        component: CommentsPostComponent,
         canActivate: [authGuard]
       },
       {

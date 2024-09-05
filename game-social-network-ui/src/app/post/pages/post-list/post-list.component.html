@@ -1,9 +1,12 @@
+<div class="page-container">
 <h3>Post list</h3>
 <hr>
 <div class="d-flex justify-content-start gap-2 flew-wrap">
   <app-post-card
     *ngFor="let post of postResponse.content"
     [post]="post"
+    (details)="singlePost($event)"
+    (comments)="commentsPost($event)"
   ></app-post-card>
 </div>
 
@@ -71,4 +74,5 @@
 
     </ul>
   </nav>
+</div>
 </div>
