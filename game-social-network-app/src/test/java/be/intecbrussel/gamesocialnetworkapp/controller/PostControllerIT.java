@@ -23,6 +23,8 @@ public class PostControllerIT {
     @Autowired
     PostRepository postRepository;
 
+
+
     @Autowired
     private UserRepository userRepository;
 

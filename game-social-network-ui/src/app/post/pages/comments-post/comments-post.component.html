@@ -23,20 +23,19 @@
 <!-- Formulaire de commentaire -->
 <div class="p-2 mt-3">
   <h4>Leave a Comment</h4>
-  <form (ngSubmit)="submitComment()" #commentForm="ngForm">
+
     <div class="mb-3">
       <label for="commentText" class="form-label">Your Comment</label>
       <textarea
         id="commentText"
         class="form-control"
         rows="4"
-        [(ngModel)]="newComment.text"
+        [(ngModel)]="commentRequest.body"
         name="text"
         required>
       </textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <button (click)="saveComment()" type="submit" class="btn btn-primary">Submit</button>
 </div>
 
 <!-- Section des commentaires -->

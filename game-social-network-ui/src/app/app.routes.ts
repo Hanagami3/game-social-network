@@ -7,7 +7,7 @@ import {FormComponent} from "./layout/form/form.component";
 import {PostComponent} from "./post/component/post/post.component";
 import {MainComponent} from "./post/pages/main/main.component";
 import {PostListComponent} from "./post/pages/post-list/post-list.component";
-import {ManagePostComponent} from "./post/pages/manage-book/manage-post.component";
+import {ManagePostComponent} from "./post/pages/manage-post/manage-post.component";
 import {MyPostsComponent} from "./post/pages/my-posts/my-posts.component";
 import {authGuard} from "./services/guard/auth.guard";
 import {SinglePostComponent} from "./post/pages/single-post/single-post.component";
