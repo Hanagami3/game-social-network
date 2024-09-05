@@ -64,3 +64,11 @@ i {
   font-size: 1.25rem; /* Slightly larger icons for a retro feel */
 }
 
+.border-success {
+  border: 4px solid #28a745 !important; /* Couleur verte pour indiquer le succès */
+}
+
+.border-warning {
+  border: 4px solid #ffc107 !important; /* Couleur jaune pour indiquer un avertissement */
+}
+

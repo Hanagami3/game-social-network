@@ -1,0 +1,91 @@
+body {
+  background: linear-gradient(135deg, #FF5A5F, #FF004D, #1d2b53);
+  background-size: cover;
+  font-family: 'Quicksand', sans-serif; /* Police moderne d'Airbnb */
+  color: #ffffff;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+h3 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #FF5A5F; /* Couleur rouge Airbnb */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+hr {
+  border: 2px solid #FF5A5F;
+  margin-bottom: 2rem;
+}
+
+.btn-outline-primary {
+  font-family: 'Press Start 2P', cursive; /* Police rétro */
+  background-color: #ffffff;
+  color: #FF5A5F;
+  border: 2px solid #FF5A5F;
+  padding: 0.5rem 1rem;
+  text-shadow: 1px 1px 0 #000000; /* Effet de texte pixelisé */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-outline-primary i {
+  color: #FF5A5F;
+}
+
+.btn-outline-primary:hover {
+  background-color: #FF5A5F;
+  color: #ffffff;
+  transform: scale(1.1); /* Légère augmentation de la taille au survol */
+}
+
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pagination {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.page-link {
+  color: #FF5A5F;
+  border: 2px solid #FF5A5F;
+  border-radius: 8px; /* Ajoute un léger arrondi */
+  background-color: #ffffff;
+  padding: 0.5rem 0.75rem;
+  text-shadow: 1px 1px 0 #000000; /* Effet de texte pixelisé */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.page-link:hover {
+  background-color: #FF5A5F;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.page-item.disabled .page-link {
+  background-color: #f1f1f1;
+  color: #cccccc;
+  border-color: #cccccc;
+}
+
+.page-item.active .page-link {
+  background-color: #FF5A5F;
+  color: #ffffff;
+}

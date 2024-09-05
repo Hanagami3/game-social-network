@@ -1,11 +1,11 @@
 <div
   class="card pico8-card border-0"
   style="width: 18rem;"
-  [class.border-pico-red]="post.shareable"
-  [class.border-pico-yellow]="post.archived"
+  [class.border-success]="post.shareable"
+  [class.border-warning]="post.archived"
 >
   <img height="160" [src]="postImage" class="card-img-top rounded-top" alt="Post image">
-  <div class="card-body p-3">
+  <div class="card-body p-3 ">
     <h5 class="card-title fs-5 text-nowrap fw-bold mb-2">
       <i class="fa-solid fa-pen pico-icon"></i>&nbsp;{{post.title}}
     </h5>
