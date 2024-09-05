@@ -10,7 +10,10 @@ import {
   faMessage,
   faSearch,
   faUser,
-  faHome
+  faHome,
+  faTelevision,
+  faBookAtlas,
+  faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons"
 
 export const fontAwesomeIcons: IconDefinition[] = [
@@ -24,5 +27,8 @@ export const fontAwesomeIcons: IconDefinition[] = [
   faCalendar,
   faCircle,
   faGamepad,
-  faHome
+  faHome,
+  faTelevision,
+  faBookAtlas,
+  faSignOutAlt
 ]

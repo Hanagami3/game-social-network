@@ -9,10 +9,8 @@ import { AvatarComponent } from './avatar/avatar.component';
 import { DialogService } from "primeng/dynamicdialog"
 import { ToastService } from '../toast.service';
 import { AuthenticationService} from "../../services/services/authentication.service";
-import {User} from "../../models/User.model";
 
 
-//import { User } from '../../core/model/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -36,6 +34,12 @@ export class NavbarComponent //implements OnInit
   post: string = "Add post";
   dates: string = "Add dates";
 
+  games: string[] = [
+    'Game 1',
+    'Game 2',
+    'Game 3'
+  ]
+
   toastService = inject(ToastService);
   authService = inject(AuthenticationService);
 
@@ -44,7 +48,7 @@ export class NavbarComponent //implements OnInit
 
   currentMenuItems: MenuItem[] | undefined = [];
 
-  connectedUser: User = {email: this.authService.notConnected};
+  //connectedUser: User = {email: this.authService.notConnected};
 
   // constructor(){
   //   effect(() => {
@@ -103,4 +107,4 @@ export class NavbarComponent //implements OnInit
 //   hasToBeModerator(): boolean {
 //     return this.authService.hasAnyAuthority("ROLE_MODERATOR");
 //   }
- }
+}

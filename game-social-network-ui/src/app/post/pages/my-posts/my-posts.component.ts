@@ -101,6 +101,6 @@ export class MyPostsComponent implements OnInit{
   }
 
   newPost() {
-    this.router.navigate(['manage']);
+    this.router.navigate(['post', 'manage']);
   }
 }

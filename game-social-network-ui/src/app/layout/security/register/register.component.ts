@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import {RegistrationRequest} from "../../services/models/registration-request";
+import {RegistrationRequest} from "../../../services/models/registration-request";
 import {NgForOf, NgIf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
-import {AuthenticationService} from "../../services/services/authentication.service";
+import {AuthenticationService} from "../../../services/services/authentication.service";
 
 @Component({
   selector: 'app-register',

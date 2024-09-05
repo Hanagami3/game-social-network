@@ -1,35 +1,35 @@
 <div
-  class="card border-2"
-  style="width: 20rem;"
-  [class.border-success]="post.shareable"
-  [class.border-warning]="post.archived"
+  class="card pico8-card border-0"
+  style="width: 18rem;"
+  [class.border-pico-red]="post.shareable"
+  [class.border-pico-yellow]="post.archived"
 >
-  <img height="200" [src]="postImage" class="card-img-top" alt="...">
-  <div class="card-body overflow-scroll">
-    <h5 class="card-title fs-6 text-nowrap fw-bold mb-1">
-      <i class="fa-solid fa-pen"></i>&nbsp;{{post.title}}
+  <img height="160" [src]="postImage" class="card-img-top rounded-top" alt="Post image">
+  <div class="card-body p-3">
+    <h5 class="card-title fs-5 text-nowrap fw-bold mb-2">
+      <i class="fa-solid fa-pen pico-icon"></i>&nbsp;{{post.title}}
     </h5>
-    <h5 class="card-subtitle fs-6 text-secondary mb-1">
-      <i class="fa-solid fa-user-check"></i>&nbsp;{{post.author}}
-    </h5>
-    <h6 class="card-subtitle fs-6 text-secondary mb-1">
-      <i class="fa-solid fa-file-text"></i>&nbsp;{{post.resume}}
+    <h6 class="card-subtitle fs-6 text-pico-secondary mb-2">
+      <i class="fa-solid fa-user-check pico-icon"></i>&nbsp;{{post.author}}
+    </h6>
+    <h6 class="card-subtitle fs-6 text-pico-secondary mb-2">
+      <i class="fa-solid fa-file-text pico-icon"></i>&nbsp;{{post.resume}}
     </h6>
     <hr>
     <p class="card-text">{{post.content}}</p>
   </div>
-  <div class="card-footer d-flex gap-2 justify-content-between align-items-center">
+  <div class="card-footer d-flex gap-2 justify-content-between align-items-center p-2">
     <div class="d-flex gap-2">
-      <i (click)="onAddLike()" class="fas fa-heart text-danger"></i>
+      <i (click)="onAddLike()" class="fas fa-heart pico-red"></i>
     </div>
     <div class="d-flex gap-2" *ngIf="!manage">
-      <i (click)="onCommentView()" class="fas fa-comment text-primary"></i>
-      <i (click)="onSowDetails()" class="fas fa-box-open text-primary"></i>
+      <i (click)="onCommentView()" class="fas fa-comment pico-blue"></i>
+      <i (click)="onSowDetails()" class="fas fa-box-open pico-blue"></i>
     </div>
     <div class="d-flex gap-2" *ngIf="manage">
-      <i (click)="onEdit()" class="fas fa-edit text-success"></i>
-      <i (click)="onShare()" class="fas fa-share-nodes text-primary"></i>
-      <i (click)="onArchive()" class="fas fa-archive text-danger"></i>
+      <i (click)="onEdit()" class="fas fa-edit pico-green"></i>
+      <i (click)="onShare()" class="fas fa-share-nodes pico-blue"></i>
+      <i (click)="onArchive()" class="fas fa-archive pico-yellow"></i>
     </div>
   </div>
 </div>

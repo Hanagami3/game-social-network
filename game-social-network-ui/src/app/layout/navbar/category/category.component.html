@@ -1,12 +1,23 @@
-<div class="categories pt-3 mx-8">
+<div class="categories pt-3 mx-8 d-flex justify-content-between align-items-center">
   @for (category of categories; track category.technicalName) {
     @if (category.technicalName !== 'ALL') {
       <div class="flex flex-column align-items-center pb-3 category"
-           [class.category-activated]="category.activated">
-        <fa-icon class="mb-1" [icon]="category.icon"></fa-icon>
-        <div title="{{category.displayName}}" class="name">{{ category.displayName }}</div>
+           [routerLink]="[category.technicalName]">
+          <fa-icon class="mb-1" [icon]="category.icon" ></fa-icon>
+          <div title="{{category.displayName}}" class="name">{{ category.displayName }}</div>
       </div>
     }
   }
+  <form class="d-flex gap-2 align-items-center ml-auto" role="search">
+    <input class="form-control" type="text" placeholder="Find a post" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">
+      <i class="fas fa-search"></i>
+    </button >
+    <span>Welcome</span>
+    <span class="text-capitalize fw-bold">Hanagami</span>
+    <button class="btn" type="button" (click)="logout()">
+      <fa-icon class="red-icon pb-3" [icon]="'sign-out-alt'"></fa-icon>
+    </button>
+  </form>
 </div>
 

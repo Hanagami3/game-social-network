@@ -8,39 +8,44 @@ import { BehaviorSubject } from 'rxjs';
 export class CategoryService {
 
   private categories: Category[] = [
-    //all
-    {
-      icon: 'eye',
-      displayName: "ALL",
-      technicalName: "ALL",
-      activated: false
-    },
     //game
     {
-      icon: "dice",
+      icon: "television",
       displayName: "GAME",
-      technicalName: "GAME",
-      activated: false
+      technicalName: "",
+      activated: true,
+      path: ''
     },
     //blog
     {
       icon: "message",
-      displayName: "Bloc",
-      technicalName: "BLOG",
-      activated: false
+      displayName: "BLOG",
+      technicalName: "post",
+      path: '/',
+      activated: true
     },
     //calendar
     {
       icon: "calendar",
       displayName: "CALENDAR",
       technicalName: "CALENDAR",
+      path: '/',
+      activated: false
+    },
+    //My Post
+    {
+      icon: "book-atlas",
+      displayName: "MY POST",
+      technicalName: "post/my-posts",
+      path: '/',
       activated: false
     },
     //profil
     {
       icon: "user",
       displayName: "PROFIL",
-      technicalName: "PROFIL",
+      technicalName: "/form",
+      path: '/',
       activated: false
     },
   ];

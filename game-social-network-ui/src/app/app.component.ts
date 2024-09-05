@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {LoginComponent} from "./pages/login/login.component";
+import {LoginComponent} from "./layout/security/login/login.component";
 import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MessageService} from "primeng/api";
 import {fontAwesomeIcons} from "./shared/font-awesome-icons";
