@@ -12,6 +12,7 @@ import {MyPostsComponent} from "./post/pages/my-posts/my-posts.component";
 import {authGuard} from "./services/guard/auth.guard";
 import {SinglePostComponent} from "./post/pages/single-post/single-post.component";
 import {CommentsPostComponent} from "./post/pages/comments-post/comments-post.component";
+import {UserProfilComponent} from "./layout/security/user-profil/user-profil.component";
 
 export const routes: Routes = [
   {
@@ -33,6 +34,11 @@ export const routes: Routes = [
   {
     path: 'form',
     component: FormComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'user-profil',
+    component: UserProfilComponent,
     canActivate: [authGuard]
   },
   {

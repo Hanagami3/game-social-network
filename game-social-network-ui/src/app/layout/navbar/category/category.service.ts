@@ -44,7 +44,7 @@ export class CategoryService {
     {
       icon: "user",
       displayName: "PROFIL",
-      technicalName: "/form",
+      technicalName: "/user-profil",
       path: '/',
       activated: false
     },

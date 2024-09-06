@@ -14,6 +14,7 @@ import jakarta.validation.constraints.NotNull;
 @Builder
 public class RegistrationRequest {
 
+    Long id;
 
     @NotEmpty(message = "Firstname is mandatory")
     @NotNull(message = "Firstname is mandatory")

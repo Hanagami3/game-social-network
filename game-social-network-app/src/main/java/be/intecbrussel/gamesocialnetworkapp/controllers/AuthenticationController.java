@@ -4,7 +4,9 @@ package be.intecbrussel.gamesocialnetworkapp.controllers;
 import be.intecbrussel.gamesocialnetworkapp.requests.AuthenticationRequest;
 import be.intecbrussel.gamesocialnetworkapp.responses.AuthenticationResponse;
 import be.intecbrussel.gamesocialnetworkapp.requests.RegistrationRequest;
+import be.intecbrussel.gamesocialnetworkapp.responses.UserResponse;
 import be.intecbrussel.gamesocialnetworkapp.services.security.AuthenticationService;
+import be.intecbrussel.gamesocialnetworkapp.services.security.UserDetailsServiceImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
 
     private final AuthenticationService service;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.ACCEPTED)
@@ -42,5 +45,12 @@ public class AuthenticationController {
             @RequestParam String token
     ) throws MessagingException {
         service.activateAccount(token);
+    }
+
+    @GetMapping("{user-id}")
+    public ResponseEntity<UserResponse> findUserById(
+            @PathVariable("user-id") Long userId
+    ){
+        return ResponseEntity.ok(userDetailsService.findById(userId));
     }
 }
