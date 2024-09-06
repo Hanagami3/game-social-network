@@ -9,3 +9,4 @@ export { PageResponsePostResponse } from './models/page-response-post-response';
 export { PostRequest } from './models/post-request';
 export { PostResponse } from './models/post-response';
 export { RegistrationRequest } from './models/registration-request';
+export { UserResponse } from './models/user-response';

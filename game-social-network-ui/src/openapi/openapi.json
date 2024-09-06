@@ -119,7 +119,7 @@
         ],
         "requestBody": {
           "content": {
-            "miltipart/form-data": {
+            "multipart/form-data": {
               "schema": {
                 "required": [
                   "file"
@@ -428,6 +428,37 @@
         }
       }
     },
+    "/auth/{user-id}": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "findUserById",
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/activate-account": {
       "get": {
         "tags": [
@@ -504,6 +535,10 @@
         ],
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
           "firstname": {
             "type": "string"
           },
@@ -653,6 +688,27 @@
           },
           "last": {
             "type": "boolean"
+          }
+        }
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "firstname": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
           }
         }
       }

@@ -89,7 +89,7 @@ export class PostService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `uploadImage()` instead.
    *
-   * This method sends `miltipart/form-data` and handles request body of type `miltipart/form-data`.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
   uploadImage$Response(params: UploadImage$Params, context?: HttpContext): Observable<StrictHttpResponse<{
 }>> {
@@ -100,7 +100,7 @@ export class PostService extends BaseService {
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `uploadImage$Response()` instead.
    *
-   * This method sends `miltipart/form-data` and handles request body of type `miltipart/form-data`.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
   uploadImage(params: UploadImage$Params, context?: HttpContext): Observable<{
 }> {

@@ -5,7 +5,8 @@ export type CategoryName = "ALL" | "GAME" | "BLOG" | "CALENDAR" | "PROFIL" | "MY
 export interface Category{
   icon: IconName,
   displayName: string,
-  technicalName: string,
+  technicalName?: string,
   path: string,
-  activated: boolean
+  activated: boolean,
+  generateUrl?: (userId: number) => string;
 }

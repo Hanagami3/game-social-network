@@ -6,20 +6,16 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { UserResponse } from '../../models/user-response';
 
-export interface UploadImage$Params {
-  'post-id': number;
-      body?: {
-'file': Blob;
-}
+export interface FindUserById$Params {
+  'user-id': number;
 }
 
-export function uploadImage(http: HttpClient, rootUrl: string, params: UploadImage$Params, context?: HttpContext): Observable<StrictHttpResponse<{
-}>> {
-  const rb = new RequestBuilder(rootUrl, uploadImage.PATH, 'post');
+export function findUserById(http: HttpClient, rootUrl: string, params: FindUserById$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResponse>> {
+  const rb = new RequestBuilder(rootUrl, findUserById.PATH, 'get');
   if (params) {
-    rb.path('post-id', params['post-id'], {});
-    rb.body(params.body, 'multipart/form-data');
+    rb.path('user-id', params['user-id'], {});
   }
 
   return http.request(
@@ -27,10 +23,9 @@ export function uploadImage(http: HttpClient, rootUrl: string, params: UploadIma
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<{
-      }>;
+      return r as StrictHttpResponse<UserResponse>;
     })
   );
 }
 
-uploadImage.PATH = '/posts/image/{post-id}';
+findUserById.PATH = '/auth/{user-id}';

@@ -7,6 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CategoryService {
 
+
+
   private categories: Category[] = [
     //game
     {
@@ -44,7 +46,7 @@ export class CategoryService {
     {
       icon: "user",
       displayName: "PROFIL",
-      technicalName: "/user-profil",
+      technicalName: "/user-profil/:userId",
       path: '/',
       activated: false
     },
