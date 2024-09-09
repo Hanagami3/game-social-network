@@ -13,6 +13,7 @@ public class CommentMapper {
 
     public Comment toComment(CommentRequest request) {
         return Comment.builder()
+                .id(request.id())
                 .body(request.body())
                 .post(Post.builder()
                         .id(request.postId())
@@ -25,7 +26,9 @@ public class CommentMapper {
 
     public CommentResponse toCommentResponse(Comment comment, Long id) {
         return CommentResponse.builder()
+                .id(comment.getId())
                 .body(comment.getBody())
+                .author(comment.getAuthor().getFullName())
                 .ownComment(Objects.equals(comment.getCreatedBy(), id))
                 .build();
     }

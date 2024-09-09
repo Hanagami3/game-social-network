@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {NgForOf, NgIf} from "@angular/common";
 import {PostResponse} from "../../../services/models/post-response";
 import {PageResponseCommentResponse} from "../../../services/models/page-response-comment-response";
@@ -31,6 +31,7 @@ private postId = 0;
 constructor(
   private postservice: PostService,
   private commentService: CommentService,
+  private router: Router,
   private activatedRoute: ActivatedRoute
 ) {
 }
@@ -88,5 +89,6 @@ goToNextPage() {
 get isLastPage() {
   return this.page === this.comment.totalPages as number - 1;
 }
+
 
 }

@@ -7,7 +7,7 @@ import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 import {CommentRequest} from "../../../services/models/comment-request";
-import {SaveComment$Params} from "../../../services/fn/comment/save-comment";
+import {DeleteById$Params} from "../../../services/fn/comment/delete-by-id";
 
 @Component({
   selector: 'app-comments-post',
@@ -32,9 +32,10 @@ export class CommentsPostComponent implements OnInit{
   pages: any = [];
   private postId= 0;
   commentRequest: CommentRequest = {body:"", postId: this.postId};
+  commentId: number | undefined;
 
   constructor(
-    private postservice: PostService,
+    private postService: PostService,
     private commentService: CommentService,
     private router: Router,
     private activatedRoute: ActivatedRoute
@@ -44,7 +45,7 @@ export class CommentsPostComponent implements OnInit{
   ngOnInit(): void {
     this.postId = this.activatedRoute.snapshot.params['postId'];
     if (this.postId) {
-      this.postservice.findPostById({
+      this.postService.findPostById({
         'post-id': this.postId
       }).subscribe({
         next: (post) => {
@@ -60,6 +61,7 @@ export class CommentsPostComponent implements OnInit{
     } else {
       console.error('Post ID is not defined');
     }
+    this.commentId = this.commentService.getCommentId();
   }
 
   private findAllComments() {
@@ -124,4 +126,36 @@ export class CommentsPostComponent implements OnInit{
     saveComment1(){
     this.router.navigate(['/post'])
   }
+
+  // deleteComment(id: any) {
+  //   this.commentService.findPostById1(id).subscribe({
+  //     next: () => {
+  //       this.router.navigate(['/post']);
+  //     }
+  //   })
+  // }
+
+  deleteComment(commentId: number): void {
+    if (confirm('Are you sure you want to delete this comment?')) {
+      const params: DeleteById$Params = { 'comment-id': commentId };
+
+      this.commentService.deleteById(params).subscribe({
+        next: (success) => {
+          if (success) {
+            alert('Comment deleted successfully.');
+            this.postId = this.activatedRoute.snapshot.params['postId'];
+            this.router.navigate(['/post']);
+          } else {
+            alert('Failed to delete the comment.');
+          }
+        },
+        error: (err) => {
+          console.error('Error deleting comment', err);
+          alert('Failed to delete the comment. Please try again later.');
+        }
+      });
+    }
+  }
+
+
 }

@@ -7,16 +7,17 @@ import jakarta.validation.constraints.NotNull;
 
 public record PostRequest(
 
+
         Long id,
 
-        @NotNull(message = "100")
-        @NotEmpty(message = "100")
-        @NotBlank(message = "100")
+        @NotNull(message = "title is mandatory")
+        @NotEmpty(message = "title is mandatory")
+        @NotBlank(message = "title is mandatory")
         String title,
 
-        @NotNull(message = "101")
-        @NotEmpty(message = "101")
-        @NotBlank(message = "101")
+        @NotNull(message = "content is mandatory")
+        @NotEmpty(message = "content is mandatory")
+        @NotBlank(message = "content is mandatory")
         String content,
 
         String resume,

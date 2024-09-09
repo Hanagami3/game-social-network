@@ -40,7 +40,16 @@ public class CommentService {
             throw new OperationNotPermittedException("You cannot give a comment to you own post");
         }
         Comment comment = commentMapper.toComment(request);
+        comment.setAuthor(user);
         return commentRepository.save(comment).getId();
+    }
+
+    public CommentResponse findById(Long commentId, Authentication connectedUser){
+        User user = ((User) connectedUser.getPrincipal());
+
+        return commentRepository.findById(commentId)
+                .map(c -> commentMapper.toCommentResponse(c, user.getId()))
+                .orElseThrow(() -> new EntityNotFoundException("No comment found with the ID: " + commentId));
     }
 
     public PageResponse<CommentResponse> finAllCommentByPost(Long postId, int page, int size, Authentication connectedUser) {
@@ -59,5 +68,16 @@ public class CommentService {
                 comments.isFirst(),
                 comments.isLast()
         );
+    }
+
+    public Boolean deleteComment(Long commentId, Authentication connectedUser) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new EntityNotFoundException("No post found with ID:: " + commentId));
+        User user = ((User) connectedUser.getPrincipal());
+        if (commentRepository.existsById(comment.getId())) {
+            commentRepository.deleteById(commentId);
+            return true;
+        }
+        return false;
     }
 }

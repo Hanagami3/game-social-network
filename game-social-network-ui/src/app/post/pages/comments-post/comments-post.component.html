@@ -3,7 +3,7 @@
   <hr>
   <div class="d-flex gap-2">
     <div class="col-3">
-      <img class="rounded-1" width="100%" height="100%" [src]="'https://picsum.photos/1900/800'" alt="">
+      <img class="rounded-1" width="100%" height="100%" [src]="'data:image/jpg;base64,' + post.image ||'https://picsum.photos/1900/800'" alt="">
     </div>
     <div class="col-9">
       <h2><i class="fa-solid fa-book"></i>&nbsp;{{ post.title }}</h2>
@@ -20,7 +20,6 @@
   </div>
 </div>
 
-<!-- Formulaire de commentaire -->
 <div class="p-2 mt-3">
   <h4>Leave a Comment</h4>
 
@@ -38,17 +37,20 @@
     <button (click)="saveComment()" type="submit" class="btn btn-primary">Submit</button>
 </div>
 
-<!-- Section des commentaires -->
-<div class="d-flex flex-column justify-content-end mt-3">
-  <div *ngFor="let comment of comment.content" class="mb-2">
-    <div class="d-flex gap-2">
-      <!-- Affichage des feedbacks -->
+<div class="d-flex flex-column justify-content-end">
+  <div *ngFor="let comment of comment.content">
+    <div class="comment-container d-flex gap-2 align-items-start">
+      <div class="comment-content">
+        <h6 class="comment-author">{{ comment.author }}</h6>
+        <p class="comment-body">{{ comment.body }}</p>
+      </div>
+      <button class="btn-delete" (click)="deleteComment(comment.id!)">
+        <i class="fas fa-trash-alt"></i> Delete
+      </button>
     </div>
-    <p>{{comment.body}}</p>
   </div>
 </div>
 
-<!-- Pagination -->
 <div class="d-flex justify-content-center mt-3">
   <nav aria-label="Page navigation example">
     <ul class="pagination">

@@ -1,5 +1,6 @@
 package be.intecbrussel.gamesocialnetworkapp.models;
 
+import be.intecbrussel.gamesocialnetworkapp.models.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,10 @@ import java.time.LocalDateTime;
 public class Comment extends BaseEntity {
 
     private String body;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User author;
 
     @ManyToOne
     @JoinColumn(name = "post_id")

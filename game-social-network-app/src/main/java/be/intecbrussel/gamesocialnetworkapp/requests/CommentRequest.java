@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotNull;
 
 public record CommentRequest(
 
+        Long id,
+
         @NotNull(message = "200")
         @NotEmpty(message = "200")
         @NotBlank(message = "200")
