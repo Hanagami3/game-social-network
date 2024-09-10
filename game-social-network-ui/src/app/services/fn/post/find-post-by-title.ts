@@ -6,19 +6,20 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { PageResponsePostResponse } from '../../models/page-response-post-response';
 
-export interface DeleteById$Params {
-  'comment-id': number;
+export interface FindPostByTitle$Params {
   page?: number;
   size?: number;
+  query: string;
 }
 
-export function deleteById(http: HttpClient, rootUrl: string, params: DeleteById$Params, context?: HttpContext): Observable<StrictHttpResponse<boolean>> {
-  const rb = new RequestBuilder(rootUrl, deleteById.PATH, 'delete');
+export function findPostByTitle(http: HttpClient, rootUrl: string, params: FindPostByTitle$Params, context?: HttpContext): Observable<StrictHttpResponse<PageResponsePostResponse>> {
+  const rb = new RequestBuilder(rootUrl, findPostByTitle.PATH, 'get');
   if (params) {
-    rb.path('comment-id', params['comment-id'], {});
     rb.query('page', params.page, {});
     rb.query('size', params.size, {});
+    rb.query('query', params.query, {});
   }
 
   return http.request(
@@ -26,9 +27,9 @@ export function deleteById(http: HttpClient, rootUrl: string, params: DeleteById
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return (r as HttpResponse<any>).clone({ body: String((r as HttpResponse<any>).body) === 'true' }) as StrictHttpResponse<boolean>;
+      return r as StrictHttpResponse<PageResponsePostResponse>;
     })
   );
 }
 
-deleteById.PATH = '/comments/{comment-id}';
+findPostByTitle.PATH = '/posts/search';

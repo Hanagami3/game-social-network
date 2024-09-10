@@ -83,5 +83,15 @@ public class PostController {
         return ResponseEntity.accepted().build();
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<PageResponse<PostResponse>> findPostByTitle(
+            @RequestParam(name = "page", defaultValue = "0", required = false) int page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) int size,
+            @RequestParam("query") String keyword,
+            Authentication connectedUser
+    ){
+        return ResponseEntity.ok(postService.searchPostsByTitle(page, size, connectedUser, keyword));
+    }
+
 
 }

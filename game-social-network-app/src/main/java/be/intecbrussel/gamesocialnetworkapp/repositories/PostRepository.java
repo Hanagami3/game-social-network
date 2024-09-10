@@ -17,4 +17,6 @@ public interface PostRepository extends JpaRepository<Post, Long>, JpaSpecificat
             AND post.author.id != :userId
             """)
     Page<Post> findAllDisplayablePosts(Pageable pageable, Long userId);
+
+    Page<Post>  findByTitleContainingIgnoreCase(Pageable pageable, String title);
 }

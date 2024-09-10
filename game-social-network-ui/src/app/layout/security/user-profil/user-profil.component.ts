@@ -19,6 +19,7 @@ import {NgForOf, NgIf} from "@angular/common";
 })
 export class UserProfilComponent implements OnInit{
 
+  userProfile: any;
   errorMsg: Array<String> = [];
   registerRequest: RegistrationRequest = {
     email: "",
@@ -31,25 +32,33 @@ export class UserProfilComponent implements OnInit{
     private authenticationService: AuthenticationService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private authService: AuthenticationService,
   ) {
   }
 
-    ngOnInit(): void {
-      const userId = this.activatedRoute.snapshot.params['userId'];
-      if (userId) {
-        this.authenticationService.findUserById({
-          'user-id': userId
-        }).subscribe( user=> {
-          this.registerRequest = {
-            id: user.id,
-            firstname: user.firstname as string,
-            lastname: user.lastname as string,
-            email: user.email as string,
-            password: user.password as string,
-          }
-        })
-      }
-    }
+  ngOnInit(): void {
+    const userId = localStorage.getItem('userId');
+
+    // if (userId) {
+    //   this.authService.findUserByIdBis(Number(userId)).subscribe({
+    //     next: (data) => {
+    //       this.userProfile = data;
+    //       this.registerRequest = {
+    //         id: this.userProfile.id,
+    //         firstname: this.userProfile.firstname,
+    //         lastname: this.userProfile.lastname,
+    //         email: this.userProfile.email,
+    //         password: '' // Ne remplissez pas le mot de passe
+    //       };
+    //     },
+    //     error: (error) => {
+    //       console.error('Erreur lors de la récupération du profil utilisateur', error);
+    //     }
+    //   });
+    // } else {
+    //   console.error('ID utilisateur non trouvé dans localStorage');
+    // }
+  }
 
   onFileSelected($event: any) {
 

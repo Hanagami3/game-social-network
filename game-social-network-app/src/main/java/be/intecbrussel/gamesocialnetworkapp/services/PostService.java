@@ -114,5 +114,23 @@ public class PostService {
         postRepository.save(post);
     }
 
+    public PageResponse<PostResponse> searchPostsByTitle(int page, int size, Authentication connectedUser, String title) {
+        User user = ((User) connectedUser.getPrincipal());
+        Pageable pageable = PageRequest.of(page, size, Sort.by("createdDate").descending());
+        Page<Post> posts = postRepository.findByTitleContainingIgnoreCase(pageable, title);
+        List<PostResponse> postResponse = posts.stream()
+                .map(postMapper::toPostResponse)
+                .toList();
+        return new PageResponse<>(
+                postResponse,
+                posts.getNumber(),
+                posts.getSize(),
+                posts.getTotalElements(),
+                posts.getTotalPages(),
+                posts.isFirst(),
+                posts.isLast()
+        );
+    }
+
 
 }

@@ -46,7 +46,7 @@ export class CategoryService {
     {
       icon: "user",
       displayName: "PROFIL",
-      technicalName: "/user-profil/:userId",
+      technicalName: "/user-profil",
       path: '/',
       activated: false
     },

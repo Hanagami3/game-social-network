@@ -1,9 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
-import {HttpClient, HttpContext, HttpResponse} from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {filter, map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
@@ -19,7 +19,6 @@ import { FindCommentById$Params } from '../fn/comment/find-comment-by-id';
 import { PageResponseCommentResponse } from '../models/page-response-comment-response';
 import { saveComment } from '../fn/comment/save-comment';
 import { SaveComment$Params } from '../fn/comment/save-comment';
-import {RequestBuilder} from "../request-builder";
 
 @Injectable({ providedIn: 'root' })
 export class CommentService extends BaseService {
@@ -36,6 +35,8 @@ export class CommentService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
   }
+
+
 
   /** Path part for operation `saveComment()` */
   static readonly SaveCommentPath = '/comments';
@@ -97,19 +98,7 @@ export class CommentService extends BaseService {
    * This method doesn't expect any request body.
    */
   deleteById$Response(params: DeleteById$Params, context?: HttpContext): Observable<StrictHttpResponse<boolean>> {
-    const rb = new RequestBuilder(this.rootUrl, '/comments/{comment-id}', 'delete');
-    if (params) {
-      rb.path('comment-id', params['comment-id'], {});
-    }
-
-    return this.http.request(
-      rb.build({ responseType: 'json', accept: 'application/json', context })
-    ).pipe(
-      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<boolean>;
-      })
-    );
+    return deleteById(this.http, this.rootUrl, params, context);
   }
 
   /**

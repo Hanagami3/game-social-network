@@ -13,6 +13,7 @@ import {authGuard} from "./services/guard/auth.guard";
 import {SinglePostComponent} from "./post/pages/single-post/single-post.component";
 import {CommentsPostComponent} from "./post/pages/comments-post/comments-post.component";
 import {UserProfilComponent} from "./layout/security/user-profil/user-profil.component";
+import {SearchPostComponent} from "./post/pages/search-post/search-post.component";
 
 export const routes: Routes = [
   {
@@ -37,7 +38,7 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'user-profil/:userId',
+    path: 'user-profil',
     component: UserProfilComponent,
     canActivate: [authGuard]
   },
@@ -75,7 +76,9 @@ export const routes: Routes = [
         path: 'my-posts',
         component: MyPostsComponent,
         canActivate: [authGuard]
-      }
+      },
+      { path: 'search-results',
+        component: SearchPostComponent },
     ]
   }
 ];

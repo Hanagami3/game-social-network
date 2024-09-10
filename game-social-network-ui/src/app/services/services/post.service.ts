@@ -15,6 +15,8 @@ import { findAllPosts } from '../fn/post/find-all-posts';
 import { FindAllPosts$Params } from '../fn/post/find-all-posts';
 import { findPostById } from '../fn/post/find-post-by-id';
 import { FindPostById$Params } from '../fn/post/find-post-by-id';
+import { findPostByTitle } from '../fn/post/find-post-by-title';
+import { FindPostByTitle$Params } from '../fn/post/find-post-by-title';
 import { PageResponsePostResponse } from '../models/page-response-post-response';
 import { PostResponse } from '../models/post-response';
 import { savePost } from '../fn/post/save-post';
@@ -183,6 +185,31 @@ export class PostService extends BaseService {
   findPostById(params: FindPostById$Params, context?: HttpContext): Observable<PostResponse> {
     return this.findPostById$Response(params, context).pipe(
       map((r: StrictHttpResponse<PostResponse>): PostResponse => r.body)
+    );
+  }
+
+  /** Path part for operation `findPostByTitle()` */
+  static readonly FindPostByTitlePath = '/posts/search';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findPostByTitle()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findPostByTitle$Response(params: FindPostByTitle$Params, context?: HttpContext): Observable<StrictHttpResponse<PageResponsePostResponse>> {
+    return findPostByTitle(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findPostByTitle$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findPostByTitle(params: FindPostByTitle$Params, context?: HttpContext): Observable<PageResponsePostResponse> {
+    return this.findPostByTitle$Response(params, context).pipe(
+      map((r: StrictHttpResponse<PageResponsePostResponse>): PageResponsePostResponse => r.body)
     );
   }
 

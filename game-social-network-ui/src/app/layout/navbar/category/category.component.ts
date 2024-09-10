@@ -1,19 +1,20 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CategoryService } from './category.service';
-import {Category, CategoryName} from './category.model';
-import {ActivatedRoute, NavigationEnd, Router, RouterLink} from "@angular/router";
-import {filter, map} from "rxjs/operators";
+import {Category} from './category.model';
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-category',
   standalone: true,
-  imports: [ FontAwesomeModule, RouterLink],
+  imports: [FontAwesomeModule, RouterLink, FormsModule],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
 })
 export class CategoryComponent implements OnInit {
 
+  searchTerm: string = '';
   categoryService = inject(CategoryService);
   router = inject(Router);
   activatedRoute = inject(ActivatedRoute);
@@ -38,6 +39,11 @@ export class CategoryComponent implements OnInit {
      this.categories = this.categoryService.getCategories();
    }
 
+  search(): void {
+    if (this.searchTerm.trim()) {
+      this.router.navigate(['post/search-results']);
+    }
+  }
 
 
   // private listenRouter() {
@@ -81,4 +87,5 @@ export class CategoryComponent implements OnInit {
   //   this.router.navigate(['/' + category.path], {
   //   })
   // }
+
 }
