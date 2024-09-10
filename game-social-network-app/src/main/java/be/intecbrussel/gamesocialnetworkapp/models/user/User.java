@@ -1,6 +1,7 @@
 package be.intecbrussel.gamesocialnetworkapp.models.user;
 
 import be.intecbrussel.gamesocialnetworkapp.models.Comment;
+import be.intecbrussel.gamesocialnetworkapp.models.Like;
 import be.intecbrussel.gamesocialnetworkapp.models.Post;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -60,6 +61,9 @@ public class User implements UserDetails, Principal {
 
     @OneToMany(mappedBy = "author")
     private List<Comment> comments;
+
+    @OneToMany(mappedBy = "author")
+    private List<Like> likes;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

@@ -22,23 +22,32 @@ public class GameSocialNetworkAppApplication {
     }
 
     @Bean
-    public CommandLineRunner runner(RoleRepository roleRepository, PostRepository postRepository, UserRepository userRepository) {
+    public CommandLineRunner runner(RoleRepository roleRepository, PostRepository postRepository, UserRepository userRepository //, LikeRepository likeRepository
+    ) {
         return args -> {
             if (roleRepository.findByName("USER").isEmpty()){
                 roleRepository.save(
                         Role.builder().name("USER").build()
                 );
             }
-            if (postRepository.findById(1L).isEmpty()){
-                postRepository.save(
-                        Post.builder()
-                                .title("Post 1")
-                                .createdBy(1L)
-                                .content("content1")
-                                .author(userRepository.findAll().get(0))
-                                .build()
-                );
-            }
+//            if (postRepository.findById(1L).isEmpty()){
+//                postRepository.save(
+//                        Post.builder()
+//                                .title("Post 1")
+//                                .createdBy(1L)
+//                                .content("content1")
+//                                .author(userRepository.findAll().get(0))
+//                                .build()
+//                );
+//            }
+//            if(likeRepository.findById(1L).isEmpty()){
+//                likeRepository.save(
+//                        Like.builder()
+//                                .post(postRepository.findAll().get(0))
+//                                .author(userRepository.findAll().get(0))
+//                                .build()
+//                );
+//            }
         };
     }
 }

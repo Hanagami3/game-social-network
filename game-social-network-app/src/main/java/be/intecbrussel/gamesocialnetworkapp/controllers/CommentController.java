@@ -59,7 +59,6 @@ public class CommentController {
             @RequestParam(name = "size", defaultValue = "10", required = false) int size,
             Authentication connectedUser
     ){
-
         return ResponseEntity.ok(commentService.deleteComment(commentId, connectedUser));
     }
 }

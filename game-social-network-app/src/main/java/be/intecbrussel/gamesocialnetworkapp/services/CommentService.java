@@ -72,7 +72,7 @@ public class CommentService {
 
     public Boolean deleteComment(Long commentId, Authentication connectedUser) {
         Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new EntityNotFoundException("No post found with ID:: " + commentId));
+                .orElseThrow(() -> new EntityNotFoundException("No comment found with ID:: " + commentId));
         User user = ((User) connectedUser.getPrincipal());
         if (commentRepository.existsById(comment.getId())) {
             commentRepository.deleteById(commentId);
