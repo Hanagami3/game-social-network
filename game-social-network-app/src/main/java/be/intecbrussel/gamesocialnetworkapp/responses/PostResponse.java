@@ -17,4 +17,5 @@ public class PostResponse {
     private byte[] image;
     private boolean archived;
     private boolean shareable;
+    private boolean hasLiked;
 }

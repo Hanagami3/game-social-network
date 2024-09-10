@@ -7,10 +7,14 @@ import be.intecbrussel.gamesocialnetworkapp.models.Post;
 import be.intecbrussel.gamesocialnetworkapp.models.user.User;
 import be.intecbrussel.gamesocialnetworkapp.repositories.LikeRepository;
 import be.intecbrussel.gamesocialnetworkapp.repositories.PostRepository;
+import be.intecbrussel.gamesocialnetworkapp.repositories.user.UserRepository;
 import be.intecbrussel.gamesocialnetworkapp.requests.LikeRequest;
+import be.intecbrussel.gamesocialnetworkapp.services.security.AuthenticationService;
+import be.intecbrussel.gamesocialnetworkapp.services.security.JwtService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -25,6 +29,8 @@ public class LikeService {
     private final PostRepository postRepository;
     private final LikeMapper likeMapper;
     private final LikeRepository likeRepository;
+    private final UserRepository userRepository;
+    private final JwtService jwtService;
 
     public Long save(LikeRequest request, Authentication connectedUser){
         Post post = postRepository.findById(request.postId())
@@ -61,4 +67,22 @@ public class LikeService {
         }
         return false;
     }
+
+    public boolean hasUserLikedPost(String token, Long postId) {
+        Long userId = getCurrentUserId(token);
+        return likeRepository.existsByPostIdAndUserId(postId, userId);
+    }
+
+    private Long getCurrentUserId(String token) {
+        String username = jwtService.extractUsername(token);
+        User user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return user.getId();
+    }
+
+
+//    public boolean hasUserLikedPost(Long postId){
+//        User currentUser = authenticationService.getCurrentUser();
+//        return likeRepository.existsById(postId, currentUser.getId())
+//    }
 }

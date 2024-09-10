@@ -458,6 +458,45 @@
         }
       }
     },
+    "/likes/{postId}/liked": {
+      "get": {
+        "tags": [
+          "like"
+        ],
+        "operationId": "isPostLiked",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/likes/like-count": {
       "get": {
         "tags": [
@@ -879,6 +918,9 @@
             "type": "boolean"
           },
           "shareable": {
+            "type": "boolean"
+          },
+          "hasLiked": {
             "type": "boolean"
           }
         }

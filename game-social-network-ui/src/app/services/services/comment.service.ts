@@ -22,6 +22,7 @@ import { SaveComment$Params } from '../fn/comment/save-comment';
 
 @Injectable({ providedIn: 'root' })
 export class CommentService extends BaseService {
+
   private commentId: number | undefined;
 
   setCommentId(id: number): void {
@@ -31,7 +32,6 @@ export class CommentService extends BaseService {
   getCommentId(): number {
     return <number>this.commentId;
   }
-
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
   }

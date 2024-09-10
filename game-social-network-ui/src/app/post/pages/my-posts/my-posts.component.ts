@@ -8,6 +8,8 @@ import {PostResponse} from "../../../services/models/post-response";
 import {LikeService} from "../../../services/services/like.service";
 import {LikeRequest} from "../../../services/models/like-request";
 import {SaveLike$Params} from "../../../services/fn/like/save-like";
+import {DeleteLikeById$Params} from "../../../services/fn/like/delete-like-by-id";
+import {IsPostLiked$Params} from "../../../services/fn/like/is-post-liked";
 
 @Component({
   selector: 'app-my-posts',
@@ -49,6 +51,7 @@ export class MyPostsComponent implements OnInit{
       next: (posts) => {
         console.log(posts);
         this.postResponse = posts;
+        this.updatePostLikeInfo();
       }
     });
   }
@@ -82,7 +85,56 @@ export class MyPostsComponent implements OnInit{
     return this.page == this.postResponse.totalPages as number -1;
   }
 
-  addLikePost(post: PostResponse) {
+  // addLikePost(post: PostResponse) {
+  //   if (post.id === undefined) {
+  //     console.error('Post ID is undefined');
+  //     return;
+  //   }
+  //
+  //   const likeRequest: LikeRequest = {
+  //     postId: post.id
+  //   };
+  //
+  //   const params: SaveLike$Params = {
+  //     body: likeRequest
+  //   };
+  //
+  //   this.likeService.saveLike(params).subscribe({
+  //     next: (response) => {
+  //       console.log('Like ajouté avec succès. Réponse:', response);
+  //       // Optionnel: Mettez à jour l'état du post ou de l'interface utilisateur
+  //     },
+  //     error: (err) => {
+  //       console.error('Erreur lors de l\'ajout du like:', err);
+  //     }
+  //   });
+  // }
+
+  private getAuthorizationHeader(): string {
+    const token = localStorage.getItem('jwtToken'); // Assure-toi que 'jwtToken' est la clé utilisée pour stocker le token
+    return token ? `Bearer ${token}` : '';
+  }
+
+  private updatePostLikeInfo() {
+    this.postResponse.content?.forEach(post => {
+      if (post.id !== undefined) {
+        const params: IsPostLiked$Params = {
+          postId: post.id,
+          Authorization: this.getAuthorizationHeader()
+        };
+        this.likeService.isPostLiked(params).subscribe({
+          next: (hasLiked) => {
+            post.hasLiked = hasLiked;
+          },
+          error: (err) => {
+            console.error('Erreur lors de la vérification du like:', err);
+          }
+        });
+      }
+    });
+  }
+
+  toggleLikePost(post: PostResponse) {
     if (post.id === undefined) {
       console.error('Post ID is undefined');
       return;
@@ -92,19 +144,29 @@ export class MyPostsComponent implements OnInit{
       postId: post.id
     };
 
-    const params: SaveLike$Params = {
-      body: likeRequest
-    };
-
-    this.likeService.saveLike(params).subscribe({
-      next: (response) => {
-        console.log('Like ajouté avec succès. Réponse:', response);
-        // Optionnel: Mettez à jour l'état du post ou de l'interface utilisateur
-      },
-      error: (err) => {
-        console.error('Erreur lors de l\'ajout du like:', err);
-      }
-    });
+    if (post.hasLiked) {
+      const params: DeleteLikeById$Params = { 'like-id': post.id };
+      this.likeService.deleteLikeById(params).subscribe({
+        next: () => {
+          console.log('Like supprimé avec succès');
+          post.hasLiked = false;
+        },
+        error: (err) => {
+          console.error('Erreur lors de la suppression du like:', err);
+        }
+      });
+    } else {
+      const params: SaveLike$Params = { body: likeRequest };
+      this.likeService.saveLike(params).subscribe({
+        next: (response) => {
+          console.log('Like ajouté avec succès. Réponse:', response);
+          post.hasLiked = true;
+        },
+        error: (err) => {
+          console.error('Erreur lors de l\'ajout du like:', err);
+        }
+      });
+    }
   }
 
 

@@ -13,6 +13,8 @@ import { deleteLikeById } from '../fn/like/delete-like-by-id';
 import { DeleteLikeById$Params } from '../fn/like/delete-like-by-id';
 import { getLikesCountByPost } from '../fn/like/get-likes-count-by-post';
 import { GetLikesCountByPost$Params } from '../fn/like/get-likes-count-by-post';
+import { isPostLiked } from '../fn/like/is-post-liked';
+import { IsPostLiked$Params } from '../fn/like/is-post-liked';
 import { saveLike } from '../fn/like/save-like';
 import { SaveLike$Params } from '../fn/like/save-like';
 
@@ -44,6 +46,31 @@ export class LikeService extends BaseService {
   saveLike(params: SaveLike$Params, context?: HttpContext): Observable<number> {
     return this.saveLike$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
+    );
+  }
+
+  /** Path part for operation `isPostLiked()` */
+  static readonly IsPostLikedPath = '/likes/{postId}/liked';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `isPostLiked()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  isPostLiked$Response(params: IsPostLiked$Params, context?: HttpContext): Observable<StrictHttpResponse<boolean>> {
+    return isPostLiked(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `isPostLiked$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  isPostLiked(params: IsPostLiked$Params, context?: HttpContext): Observable<boolean> {
+    return this.isPostLiked$Response(params, context).pipe(
+      map((r: StrictHttpResponse<boolean>): boolean => r.body)
     );
   }
 
