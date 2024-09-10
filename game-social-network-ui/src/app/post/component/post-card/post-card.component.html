@@ -21,6 +21,7 @@
   <div class="card-footer d-flex gap-2 justify-content-between align-items-center p-2">
     <div class="d-flex gap-2">
       <i (click)="onAddLike()" class="fas fa-heart pico-red"></i>
+      <span>{{likesCount}}</span>
     </div>
     <div class="d-flex gap-2" *ngIf="!manage">
       <i (click)="onCommentView()" class="fas fa-comment pico-blue"></i>

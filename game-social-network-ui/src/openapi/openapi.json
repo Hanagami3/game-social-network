@@ -149,6 +149,37 @@
         }
       }
     },
+    "/likes": {
+      "post": {
+        "tags": [
+          "like"
+        ],
+        "operationId": "saveLike",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LikeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/comments": {
       "post": {
         "tags": [
@@ -427,6 +458,30 @@
         }
       }
     },
+    "/likes/like-count": {
+      "get": {
+        "tags": [
+          "like"
+        ],
+        "operationId": "getLikesCountByPost",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/comments/{comment-id}": {
       "get": {
         "tags": [
@@ -611,6 +666,37 @@
           }
         }
       }
+    },
+    "/likes/{like-id}": {
+      "delete": {
+        "tags": [
+          "like"
+        ],
+        "operationId": "deleteLikeById",
+        "parameters": [
+          {
+            "name": "like-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -637,6 +723,22 @@
           },
           "shareable": {
             "type": "boolean"
+          }
+        }
+      },
+      "LikeRequest": {
+        "required": [
+          "postId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "postId": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       },

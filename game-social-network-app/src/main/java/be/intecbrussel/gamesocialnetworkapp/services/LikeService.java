@@ -13,6 +13,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -35,6 +38,17 @@ public class LikeService {
         }
         Like like = likeMapper.toLike(request);
         return likeRepository.save(like).getId();
+    }
+
+    public Map<Long, Long> getLikesCountByPost(){
+        List<Object[]> results = likeRepository.countLikesByPost();
+        Map<Long, Long> likesCount = new HashMap<>();
+        for (Object[] result : results) {
+            Long postId = (Long) result[0];
+            Long count = (Long) result[1];
+            likesCount.put(postId, count);
+        }
+        return likesCount;
     }
 
     public Boolean deleteLike(Long likeId, Authentication connectedUser){

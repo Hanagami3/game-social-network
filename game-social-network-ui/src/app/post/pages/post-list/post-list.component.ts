@@ -5,6 +5,9 @@ import {PageResponsePostResponse} from "../../../services/models/page-response-p
 import {NgForOf} from "@angular/common";
 import {PostCardComponent} from "../../component/post-card/post-card.component";
 import {PostResponse} from "../../../services/models/post-response";
+import {LikeRequest} from "../../../services/models/like-request";
+import {SaveLike$Params} from "../../../services/fn/like/save-like";
+import {LikeService} from "../../../services/services/like.service";
 
 @Component({
   selector: 'app-post-list',
@@ -24,6 +27,7 @@ export class PostListComponent implements OnInit{
 
   constructor(
     private postService: PostService,
+    private likeService: LikeService,
     private router: Router
   ) {
   }
@@ -80,5 +84,26 @@ export class PostListComponent implements OnInit{
 
   commentsPost(post: PostResponse) {
     this.router.navigate(['post', 'comments-post', post.id]);
+  }
+
+  addLikePost(post: PostResponse) {
+    if (post.id === undefined) {
+      console.error('Post ID is undefined');
+      return;
+    }
+    const likeRequest: LikeRequest = {
+      postId: post.id
+    };
+    const params: SaveLike$Params = {
+      body: likeRequest
+    };
+    this.likeService.saveLike(params).subscribe({
+      next: (response) => {
+        console.log('Like ajouté avec succès. Réponse:', response);
+      },
+      error: (err) => {
+        console.error('Erreur lors de l\'ajout du like:', err);
+      }
+    });
   }
 }

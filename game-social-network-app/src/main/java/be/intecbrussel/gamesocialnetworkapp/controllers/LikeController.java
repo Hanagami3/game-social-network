@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("likes")
 @RequiredArgsConstructor
@@ -25,13 +27,18 @@ public class LikeController {
         return ResponseEntity.ok(likeService.save(request, connectedUser));
     }
 
-    @GetMapping
+    @GetMapping("/like-count")
+    public ResponseEntity<Map<Long, Long>> getLikesCountByPost(){
+        Map<Long, Long> likesCount = likeService.getLikesCountByPost();
+        return ResponseEntity.ok(likesCount);
+    }
+
 
     @DeleteMapping("/{like-id}")
     public ResponseEntity<Boolean> deleteLikeById(
             @PathVariable("like-id") Long likeId,
             Authentication connectedUser
     ){
-        ResponseEntity.ok(likeService.deleteLike(likeId, connectedUser));
+        return ResponseEntity.ok(likeService.deleteLike(likeId, connectedUser));
     }
 }

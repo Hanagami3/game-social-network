@@ -36,8 +36,6 @@ export class CommentService extends BaseService {
     super(config, http);
   }
 
-
-
   /** Path part for operation `saveComment()` */
   static readonly SaveCommentPath = '/comments';
 

@@ -5,6 +5,7 @@
   <app-post-card
     *ngFor="let post of postResponse.content"
     [post]="post"
+    (like)="addLikePost($event)"
     (details)="singlePost($event)"
     (comments)="commentsPost($event)"
   ></app-post-card>

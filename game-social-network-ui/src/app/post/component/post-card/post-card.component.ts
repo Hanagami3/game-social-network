@@ -1,6 +1,8 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PostResponse} from "../../../services/models/post-response";
 import {NgIf} from "@angular/common";
+import {LikeService} from "../../../services/services/like.service";
+import {count, map} from "rxjs/operators";
 
 @Component({
   selector: 'app-post-card',
@@ -11,13 +13,25 @@ import {NgIf} from "@angular/common";
   templateUrl: './post-card.component.html',
   styleUrl: './post-card.component.scss'
 })
-export class PostCardComponent {
-
+export class PostCardComponent implements OnInit{
 
   private _post: PostResponse = {};
   private _manage: boolean = false;
   private _postImage: string | undefined;
+  likesCount: number | undefined;
 
+  constructor(private  likeService: LikeService) {
+  }
+
+  ngOnInit(): void {
+    this.loadLikesCount();
+  }
+
+  private loadLikesCount() {
+    this.likeService.getLikesCountByPost()
+      .pipe(map(likes => likes[this.post.id as number]))
+      .subscribe(count => this.likesCount = count)
+  }
 
   get post(): PostResponse {
     return this._post;
@@ -53,7 +67,6 @@ export class PostCardComponent {
 
   onAddLike() {
     this.like.emit(this._post)
-
   }
 
   onCommentView() {
@@ -75,4 +88,6 @@ export class PostCardComponent {
   onSowDetails() {
     this.details.emit(this._post)
   }
+
+
 }

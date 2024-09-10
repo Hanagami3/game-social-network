@@ -105,16 +105,13 @@ export class CommentsPostComponent implements OnInit{
     return this.page === this.comment.totalPages as number - 1;
   }
 
-    // Met à jour commentRequest avec l'ID du post
     saveComment() {
-    // Prépare les paramètres pour la méthode saveComment
-
       this.commentService.saveComment({
         body: this.commentRequest
       }).subscribe({
         next: (commentId) => {
-          this.findAllComments(); // Recharger les commentaires pour voir le nouveau
-          this.commentRequest.body = ''; // Réinitialiser le champ de commentaire
+          this.findAllComments();
+          this.commentRequest.body = '';
         },
         error: (err) => {
           this.errorMsg = err.error.validationErrors;

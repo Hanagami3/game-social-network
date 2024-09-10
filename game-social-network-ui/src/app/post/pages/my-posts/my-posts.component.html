@@ -10,6 +10,7 @@
     *ngFor="let post of postResponse.content"
     [post]="post"
     [manage]="true"
+    (like)="addLikePost($event)"
     (archive)="archivePost($event)"
     (share)="sharePost($event)"
     (edit)="editPost($event)"
