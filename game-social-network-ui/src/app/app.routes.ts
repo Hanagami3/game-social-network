@@ -14,6 +14,7 @@ import {SinglePostComponent} from "./post/pages/single-post/single-post.componen
 import {CommentsPostComponent} from "./post/pages/comments-post/comments-post.component";
 import {UserProfilComponent} from "./layout/security/user-profil/user-profil.component";
 import {SearchPostComponent} from "./post/pages/search-post/search-post.component";
+import {CalendarComponent} from "./calendar/calendar.component";
 
 export const routes: Routes = [
   {
@@ -35,6 +36,11 @@ export const routes: Routes = [
   {
     path: 'form',
     component: FormComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'calendar',
+    component: CalendarComponent,
     canActivate: [authGuard]
   },
   {

@@ -4,7 +4,7 @@ import {PostCardComponent} from "../../component/post-card/post-card.component";
 import {PostResponse} from "../../../services/models/post-response";
 import {PageResponsePostResponse} from "../../../services/models/page-response-post-response";
 import {PostService} from "../../../services/services/post.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 
 @Component({
@@ -28,11 +28,16 @@ export class SearchPostComponent implements OnInit{
 
   constructor(
     private postService: PostService,
+    private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.findPostByTitle();
+    this.route.queryParams.subscribe(params => {
+      this.searchTerm = params['query'] || '';
+      this.page = 0;
+      this.findPostByTitle();
+    });
   }
 
   goToFirstPage() {
@@ -87,9 +92,8 @@ export class SearchPostComponent implements OnInit{
     });
   }
 
-  // Méthode appelée lors de la soumission du formulaire de recherche
   onSearch() {
-    this.page = 0; // Réinitialiser la page lors d'une nouvelle recherche
+    this.page = 0;
     this.findPostByTitle();
   }
 }

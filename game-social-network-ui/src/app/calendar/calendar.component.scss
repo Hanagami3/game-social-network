@@ -1,0 +1,89 @@
+/* Conteneur général du calendrier */
+.calendar-container {
+  background-color: #fff; /* Fond blanc pour un look propre */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 350px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+/* En-tête du calendrier */
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.nav-button {
+  background: #FF5A5F; /* Couleur des boutons de navigation */
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.nav-button:hover {
+  background: #FF3D3D; /* Couleur au survol */
+}
+
+/* Corps du calendrier */
+.calendar-body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Jours de la semaine */
+.weekdays {
+  display: flex;
+  justify-content: space-between;
+}
+
+.weekday {
+  font-weight: bold;
+  color: #FF5A5F;
+  flex: 1;
+  text-align: center;
+}
+
+/* Jours du mois */
+.days {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day {
+  width: calc(100% / 7);
+  padding: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+}
+
+.day.empty {
+  background: #f0f0f0; /* Couleur pour les jours vides */
+  color: #bbb;
+}
+
+.day.today {
+  background: #FF5A5F; /* Couleur de fond pour le jour actuel */
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.day.today::before {
+  content: " "; /* Pointeur décoratif pour le jour actuel */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+}

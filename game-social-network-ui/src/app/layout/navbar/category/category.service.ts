@@ -30,7 +30,7 @@ export class CategoryService {
     {
       icon: "calendar",
       displayName: "CALENDAR",
-      technicalName: "CALENDAR",
+      technicalName: "calendar",
       path: '/',
       activated: false
     },

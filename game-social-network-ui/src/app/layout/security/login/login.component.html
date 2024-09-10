@@ -7,7 +7,7 @@
       <p *ngFor="let msg of errorMsg">{{ msg }}</p>
     </div>
   </header>
-  <form>
+  <form (ngSubmit)="login()">
     <div class="control">
       <label for="email">Email</label>
       <input [(ngModel)]="authRequest.email" type="email" id="email" name="email" placeholder="Enter your email" required>
@@ -15,17 +15,16 @@
     <div class="control">
       <label for="password">Password</label>
       <input [(ngModel)]="authRequest.password" type="password" id="password" name="password" placeholder="Enter your password" required>
-
     </div>
-      <button (click)="login()" type="button" class="btn btn-primary button-spacing">
-        <em class="fas fa-sign-in-alt">&nbsp;Sign in</em>
+    <button type="submit" class="btn btn-primary button-spacing">
+      <em class="fas fa-sign-in-alt">&nbsp;Sign in</em>
+    </button>
+    <div>
+      Don't have an account? &nbsp;
+      <button (click)="register()" type="button" class="btn btn-link">
+        <em class="fas fa-user-plus">&nbsp;Register</em>
       </button>
-      <div>
-        Don't have an account? &nbsp;
-        <button (click)="register()" type="button" class="btn btn-link">
-          <em class="fas fa-user-plus">&nbsp;Register</em>
-        </button>
-      </div>
+    </div>
   </form>
 </div>
 </body>

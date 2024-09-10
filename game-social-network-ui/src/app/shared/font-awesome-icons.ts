@@ -13,7 +13,8 @@ import {
   faHome,
   faTelevision,
   faBookAtlas,
-  faSignOutAlt
+  faSignOutAlt,
+  faUserPlus
 } from "@fortawesome/free-solid-svg-icons"
 
 export const fontAwesomeIcons: IconDefinition[] = [
@@ -30,5 +31,6 @@ export const fontAwesomeIcons: IconDefinition[] = [
   faHome,
   faTelevision,
   faBookAtlas,
-  faSignOutAlt
+  faSignOutAlt,
+  faUserPlus
 ]

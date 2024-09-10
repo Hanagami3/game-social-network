@@ -1,34 +1,38 @@
-<div class="container-fluid card login-container">
-  <h3 class="text-center">Create an account</h3>
-  <hr>
-  <div class="alert alert-danger" role="alert" *ngIf="errorMsg.length">
-    <p *ngFor="let msg of errorMsg">{{msg}}</p>
-  </div>
-  <div class="mb-3">
-    <label for="firstname" class="form-label">Firstname</label>
-    <input [(ngModel)]="registerRequest.firstname" type="text" class="form-control" id="firstname" placeholder="Firstname">
-  </div>
-  <div class="mb-3">
-    <label for="lastname" class="form-label">Lastname</label>
-    <input [(ngModel)]="registerRequest.lastname" type="text" class="form-control" id="lastname" placeholder="Lastname">
-  </div>
-  <div class="mb-3">
-    <label for="login" class="form-label">Email address</label>
-    <input [(ngModel)]="registerRequest.email" type="email" class="form-control" id="login" placeholder="name@example.com">
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input [(ngModel)]="registerRequest.password" type="password" class="form-control" id="password" placeholder="Password">
-  </div>
-  <div class="d-flex justify-content-between mb-3">
-    <button (click)="register()" type="button" class="btn btn-primary">
-      <em class="fas fa-sign-in-alt">&nbsp;Create an account</em>
+<body>
+<div class="container">
+  <header>
+    <fa-icon [icon]="'user-plus'" size="3x" class="text-primary"></fa-icon>
+    <h1>Register</h1>
+    <div class="alert alert-danger" role="alert" *ngIf="errorMsg.length">
+      <p *ngFor="let msg of errorMsg">{{msg}}</p>
+    </div>
+  </header>
+  <form (ngSubmit)="register()">
+    <div class="control">
+      <label for="firstname">Firstname</label>
+      <input [(ngModel)]="registerRequest.firstname" type="text" id="firstname" name="firstname" placeholder="Enter your firstname" required>
+    </div>
+    <div class="control">
+      <label for="lastname">Lastname</label>
+      <input [(ngModel)]="registerRequest.lastname" type="text" id="lastname" name="lastname" placeholder="Enter your lastname" required>
+    </div>
+    <div class="control">
+      <label for="email">Email</label>
+      <input [(ngModel)]="registerRequest.email" type="email" id="email" name="email" placeholder="Enter your email" required>
+    </div>
+    <div class="control">
+      <label for="password">Password</label>
+      <input [(ngModel)]="registerRequest.password" type="password" id="password" name="password" placeholder="Enter your password" required>
+    </div>
+    <button type="submit" class="btn btn-primary button-spacing">
+      <em class="fas fa-user-plus">&nbsp;Create an account</em>
     </button>
     <div>
-      Already have an account?&nbsp;
+      Already have an account? &nbsp;
       <button (click)="login()" type="button" class="btn btn-link">
-        Login
+        <em class="fas fa-sign-in-alt">&nbsp;Login</em>
       </button>
     </div>
-  </div>
+  </form>
 </div>
+</body>

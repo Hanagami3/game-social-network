@@ -1,0 +1,167 @@
+/* General Styles */
+body {
+  font-family: 'Lato', sans-serif;
+  background: linear-gradient(180deg, #FF5A5F, #FF3D3D);
+  color: #333;
+  padding: 20px;
+  margin: 0;
+}
+
+/* Container Styles */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.page-container {
+  background: linear-gradient(135deg, #FFEFBA, #FFFFFF); /* Ajoute un dégradé de couleurs pastel */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styles */
+.search-container form {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-container input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px 0 0 10px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.search-container input[type="text"]:focus {
+  border-color: #FF5A5F;
+}
+
+.search-container button {
+  background-color: #FF5A5F;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-container button:hover {
+  background-color: #FF3D3D;
+}
+
+/* Post Card Styles */
+.page-container h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.page-container hr {
+  margin-bottom: 20px;
+}
+
+.page-container .d-flex {
+  gap: 10px;
+}
+
+.app-post-card {
+  background-color: #f7f7f7;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%;
+  max-width: 200px;
+  transition: transform 0.3s ease;
+}
+
+.app-post-card:hover {
+  transform: scale(1.05);
+}
+
+.app-post-card .name {
+  font-size: 18px;
+  margin-top: 10px;
+  color: #FF5A5F;
+}
+
+/* Pagination Styles */
+.page-container .pagination {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 5px;
+}
+
+.page-container .pagination .page-item {
+  display: inline-block;
+}
+
+.page-container .pagination .page-item .page-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  background-color: #FF5A5F;
+  color: #fff;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.page-container .pagination .page-item .page-link:hover,
+.page-container .pagination .page-item .page-link:focus {
+  background-color: #FF3D3D;
+}
+
+.page-container .pagination .page-item .page-link.disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.page-container .pagination .page-item .page-link.active {
+  background-color: #333;
+  color: #fff;
+}
+
+.page-container nav[aria-label="Page navigation exemple"] {
+  display: flex;
+  justify-content: center;
+}
+
+/* No Posts Found */
+#noPosts p {
+  text-align: center;
+  font-size: 18px;
+  color: #FF5A5F;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .app-post-card {
+    max-width: 100%;
+  }
+
+  .search-container form {
+    flex-direction: column;
+  }
+
+  .search-container input[type="text"],
+  .search-container button {
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .page-container .pagination .page-item .page-link {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+}

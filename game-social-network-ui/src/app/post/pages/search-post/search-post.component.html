@@ -1,3 +1,12 @@
+<div class="search-container">
+  <form (ngSubmit)="onSearch()">
+    <input class="form-control" type="text" placeholder="Find a post" aria-label="Search" [(ngModel)]="searchTerm" name="searchTerm" required>
+    <button class="btn btn-outline-success" type="submit">
+      <i class="fas fa-search"></i>
+    </button>
+  </form>
+</div>
+
 <div class="page-container">
   <h3>Post list</h3>
   <hr>
@@ -74,29 +83,6 @@
 
       </ul>
     </nav>
-  </div>
-</div>
-
-<div class="search-container">
-  <form (ngSubmit)="onSearch()">
-    <input class="form-control" type="text" placeholder="Find a post" aria-label="Search" [(ngModel)]="searchTerm" name="searchTerm" required>
-    <button class="btn btn-outline-success" type="submit">
-      <i class="fas fa-search"></i>
-    </button>
-  </form>
-</div>
-
-<div *ngIf="postResponse.content!.length > 0; else noPosts">
-  <div class="posts-container">
-    <app-post-card *ngFor="let post of postResponse.content" [post]="post"></app-post-card>
-  </div>
-
-  <div class="pagination">
-    <button (click)="goToFirstPage()" [disabled]="page === 0">First</button>
-    <button (click)="goToPreviousPage()" [disabled]="page === 0">Previous</button>
-    <span>Page {{ page + 1 }} of {{ postResponse.totalPages }}</span>
-    <button (click)="goToNextPage()" [disabled]="isLastPage">Next</button>
-    <button (click)="goToLastPage()" [disabled]="isLastPage">Last</button>
   </div>
 </div>
 

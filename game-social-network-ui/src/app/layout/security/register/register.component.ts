@@ -4,6 +4,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../../services/services/authentication.service";
+import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,8 @@ import {AuthenticationService} from "../../../services/services/authentication.s
     NgForOf,
     NgIf,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    FaIconComponent
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
